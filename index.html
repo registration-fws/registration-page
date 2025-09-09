@@ -34,7 +34,7 @@
   padding: 14px 28px;
   font-size: 16px;
   position: absolute;
-  top: -20px;    
+  top: -20px;   
   right: -20px;  
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.35);
@@ -72,7 +72,7 @@
   }
 }
 
-   
+
     .container::before, .container::after {
       content: '';
       position: absolute;
@@ -134,14 +134,23 @@
     .docs-btn {background: linear-gradient(135deg,#111827,#334155); color: white; font-size: 16px;}
     .website-btn {background: linear-gradient(135deg,#059669,#10b981); color: white; font-size: 16px;}
 
+
     .button-group {margin-bottom: 28px;}
-    .apply-group {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
+  .apply-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.apply-group a {
+  flex: 1;
+  max-width: 300px;
+  text-align: center;
+}
+
+
 
     .docs-card {
       background: #fff7ed;
@@ -177,7 +186,7 @@
 
 @media (max-width: 768px) {
   .footer {
-    display: block !important;  
+    display: block !important;   
   }
   .contact-card {
     width: 100% !important;
@@ -187,7 +196,7 @@
     margin-bottom: 0;
   }
   .note {
-    grid-column: auto; 
+    grid-column: auto;
     margin-top: 10px;
     text-align: center;
     display: block;
@@ -203,7 +212,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
   border: 1px solid #e5e7eb;
-  width: 100%;  
+  width: 100%;   
   height: 100%;
 }
 
@@ -275,13 +284,13 @@
       header img {width: 150px;}
     }
     
-    
+
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <img src="https://foundationworldschool.com/wp-content/uploads/2021/03/Screenshot_2020-08-10_at_1.58.04_PM-removebg-preview__1_-removebg-preview.png" alt="Foundation World School Logo">
+      <img src="https://foundationworldschool.com/wp-content/uploads/2025/09/documents_hdhpkpsa93i_fq38ojtg7ge_FWS-Horizontal-Logotype-PNG_1713252835557_2500x2500.png" alt="Foundation World School Logo">
       <div class="school-title">FOUNDATION WORLD SCHOOL</div>
       <div class="branches">HUMHAMA | ILLAHI BAGH | MAMATH</div>
     </header>
@@ -295,11 +304,11 @@
     
 
     <div class="apply-group">
-      <a href="#" class="btn apply-humhama" id="applyHumhamaBtn">👉 Apply Here - Humhama & Mamath</a>
-      <a href="#" class="btn apply-illahi" id="applyIllahiBtn">👉 Apply Here - Illahi Bagh</a>
+      <a href="#" class="btn apply-humhama" id="applyHumhamaBtn" target="_blank">👉 Apply Here<br>Humhama & Mamath</a>
+      <a href="#" class="btn apply-illahi" id="applyIllahiBtn" target="_blank">👉 Apply Here<br>Illahi Bagh</a>
     </div>
 
-  
+ 
     <div class="docs-card">
       <h4>📄 Required Documents & Important Information</h4>
       <p>Please review the full list of documents before applying.  
@@ -329,44 +338,71 @@
     </div>
   </div>
 
-  <script>
-    const countdownElement = document.getElementById("countdown");
-    const humhamaBtn = document.getElementById("applyHumhamaBtn");
-    const illahiBtn = document.getElementById("applyIllahiBtn");
+<script>
+  const countdownElement = document.getElementById("countdown");
+  const humhamaBtn = document.getElementById("applyHumhamaBtn");
+  const illahiBtn = document.getElementById("applyIllahiBtn");
 
-    const targetDate = new Date("September 11, 2025 09:00:00 GMT+0530").getTime();
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+  const closeDate = new Date("September 11, 2025 09:00:00 GMT+0530").getTime();
+  const openDate = new Date("September 10, 2025 09:00:00 GMT+0530").getTime();
 
-      if (distance <= 0) {
-      countdownElement.innerHTML = `⏳ Links closes in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-        countdownElement.style.color = "green";
+  function updateCountdown() {
+    const now = new Date().getTime();
 
-        humhamaBtn.href = "https://foundationworldschool.com/admissions-humhama";
-        illahiBtn.href = "https://foundationworldschool.com/admissions-illahi";
-        humhamaBtn.style.pointerEvents = "auto";
-        illahiBtn.style.pointerEvents = "auto";
-        humhamaBtn.style.opacity = "1";
-        illahiBtn.style.opacity = "1";
-        return;
-      }
+    const timeUntilOpen = openDate - now;
+    const timeUntilClose = closeDate - now;
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    //  BEFORE open window
+    if (now < openDate) {
+      const days = Math.floor(timeUntilOpen / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeUntilOpen % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeUntilOpen % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeUntilOpen % (1000 * 60)) / 1000);
 
-      countdownElement.innerHTML = `⏳ Links closes in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      countdownElement.innerHTML = `🔒 Link opens in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      countdownElement.style.color = "#dc2626";
+
       humhamaBtn.style.pointerEvents = "none";
       illahiBtn.style.pointerEvents = "none";
       humhamaBtn.style.opacity = "0.6";
       illahiBtn.style.opacity = "0.6";
     }
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
+    // DURING open window (link is live)
+    else if (now >= openDate && now < closeDate) {
+      const timeLeft = closeDate - now;
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      countdownElement.innerHTML = `Link closes in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      countdownElement.style.color = "green";
+
+      humhamaBtn.href = "https://apps.skolaro.com/school/fwshs/registration";
+      illahiBtn.href = "https://fwsib.nascorptechnologies.com/gw/gls/onlineAppForms?code=WPr1MjUrqdFUJfThpj";
+      humhamaBtn.style.pointerEvents = "auto";
+      illahiBtn.style.pointerEvents = "auto";
+      humhamaBtn.style.opacity = "1";
+      illahiBtn.style.opacity = "1";
+    }
+
+    // AFTER close window
+    else {
+      countdownElement.innerHTML = `❌ Link has closed.`;
+      countdownElement.style.color = "#6b7280";
+
+      humhamaBtn.style.pointerEvents = "none";
+      illahiBtn.style.pointerEvents = "none";
+      humhamaBtn.style.opacity = "0.4";
+      illahiBtn.style.opacity = "0.4";
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
 </body>
 </html>
